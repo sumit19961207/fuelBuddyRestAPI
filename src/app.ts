@@ -1,7 +1,7 @@
 import Fastify from "fastify";
 import { taskRoutes } from "./routes/taskRoutes";
 import { AppDataSource } from "./db/connection";
-
+const functions = require('@google-cloud/functions-framework');
 
 
 const server = Fastify();
@@ -23,3 +23,9 @@ async function main() {
 }
 
 main()
+
+
+functions.http('fastifyApp', async (req: Request, res: Response) => {
+  await server.ready();
+  server.server.emit('request', req, res);
+});

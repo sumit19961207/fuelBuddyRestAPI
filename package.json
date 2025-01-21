@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts"
+    "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts",
+    "deploy": "gcloud functions deploy fastifyApp --runtime nodejs16 --trigger-http --allow-unauthenticated"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/functions-framework": "^3.4.5",
+    "dotenv": "^16.4.7",
     "fastify": "^4.29.0",
     "fastify-jwt": "^4.2.0",
     "fastify-plugin": "^5.0.1",
